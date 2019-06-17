@@ -2,26 +2,27 @@
 require 'pass_class.php';
 require 'body_class.php';
 
-$input = new Pass(30, ['input' => true]);
-$input_output = new Pass(30, ['input' => true, 'output' => true]);
+//Создаем 2 турникета - указываем возможные события и оплату
+$input = new tz\Pass(30, ['input' => true]);
+$input_output = new tz\Pass(30, ['input' => true, 'output' => true]);
 
 $count_inp = 0;
 $count_inp_out = 0;
 
-for($i=0; $i<1000; $i++){
-    $event = rand(0,1);
-    $pas = rand(0,1);
-    $money = rand(0,100);
+//Имитация прохода 1000 разных человек с разными потребностями и разным количеством средств
+for ($i = 0; $i < 1000; $i++) {
+    $event = rand(0, 1);     //Потребность человека
+    $pas = rand(0, 1);       //В какой турникет напрвится человек
+    $money = rand(0, 100);   //Средства человека
 
-    if($event) $event = 'input';
+    if ($event) $event = 'input';
     else $event = 'output';
 
-    if($pas){
-        $input->controlUser(new Body($event, $money));
+    if ($pas) {
+        $input->controlUser(new tz\Body($event, $money));
         $count_inp++;
-    }
-    else{
-        $input_output->controlUser(new Body($event, $money));
+    } else {
+        $input_output->controlUser(new tz\Body($event, $money));
         $count_inp_out++;
     }
 }

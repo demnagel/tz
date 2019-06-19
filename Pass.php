@@ -19,16 +19,18 @@ class Pass
 
     public function __construct($pay, array $control_event = [])
     {
-        if ($control_event['input'])
+        if ($control_event['input']) {
             $this->control_event['input'] = true;
-        else
+        }
+        else {
             $this->control_event['input'] = false;
-
-        if ($control_event['output'])
+        }
+        if ($control_event['output']) {
             $this->control_event['output'] = true;
-        else
+        }
+        else {
             $this->control_event['output'] = false;
-
+        }
         $this->pay = $pay;
     }
 
